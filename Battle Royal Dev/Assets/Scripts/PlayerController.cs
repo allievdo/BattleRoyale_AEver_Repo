@@ -25,6 +25,12 @@ public class PlayerController : MonoBehaviourPun
     public Player photonPlayer;
     public PlayerWeapon weapon;
     public MeshRenderer mr;
+    AudioSource shootingSound;
+
+    void Start ()
+    {
+        shootingSound = GetComponent<AudioSource>();
+    }
 
     [PunRPC]
     public void Initialize (Player player)
@@ -58,7 +64,10 @@ public class PlayerController : MonoBehaviourPun
             TryJump();
 
         if (Input.GetMouseButtonDown(0))
+        {
+            shootingSound.Play();
             weapon.TryShoot();
+        }
     }
 
     void Move ()
