@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviourPun
 
         // flash the player red
         photonView.RPC("DamageFlash", RpcTarget.Others);
+        Debug.Log("Flash red");
 
         //update the health bar UI
         GameUI.instance.UpdateHealthBar();
@@ -164,6 +165,7 @@ public class PlayerController : MonoBehaviourPun
         GameUI.instance.UpdatePlayerInfoText();
     }
 
+    [PunRPC]
     public void Heal (int amountToHeal)
     {
         curHp = Mathf.Clamp(curHp + amountToHeal, 0, maxHp);
